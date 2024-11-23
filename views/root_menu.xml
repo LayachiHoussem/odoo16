@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <menuitem
+            id="nemu_student_root"
+            name="Student"
+            sequence="10"/>
+
+    <menuitem
+            id="nemu_student"
+            name="Student"
+            parent="nemu_student_root"
+            action="action_student"
+            sequence="10"/>
+    <menuitem
+            id="nemu_techer"
+            name="Techer"
+            parent="nemu_student_root"
+            action="action_techer"
+            sequence="102"/>
+    <menuitem
+            id="nemu_levels"
+            name="Level"
+            parent="nemu_student_root"
+            action="action_level"
+            sequence="108"/>
+    <menuitem id="menu_student_csv_report"
+              parent="nemu_student_root"
+              name="Student CSV Report"
+              sequence="112"/>
+    <menuitem id="menu_student_csv_reports"
+              parent="menu_student_csv_report"
+              name="Student CSV Report"
+              action="action_download_csv_report"
+    />
+
+</odoo>

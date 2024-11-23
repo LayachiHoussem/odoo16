@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_form_techer" model="ir.ui.view">
+        <field name="name">techer.techer.form</field>
+        <field name="model">techer.techer</field>
+        <field name="arch" type="xml">
+            <form string="techer">
+                <header>
+                    <!-- Button visibility based on state -->
+                    <button type="object" name="action_draft" string="Draft" states="confirmed,cancel"/>
+                    <button type="object" name="action_confirm" string="Confirm" class="oe_highlight" states="draft"/>
+                    <button type="object" name="action_cancel" string="Cancel" states="confirmed"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel" nolabel="1"
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ref"/>
+                            <field name="name"/>
+                            <field name="birth_day"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="grad"/>
+                            <field name="create_uid"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Line of Product">
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_tree_techer" model="ir.ui.view">
+        <field name="name">techer.techer.tree</field>
+        <field name="model">techer.techer</field>
+        <field name="arch" type="xml">
+            <tree string="techer">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="birth_day"/>
+                <field name="grad"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to display the views -->
+    <record id="action_techer" model="ir.actions.act_window">
+        <field name="name">techer</field>
+        <field name="res_model">techer.techer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

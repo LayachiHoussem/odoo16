@@ -1,0 +1,105 @@
+<odoo>
+    <template id="student_report_template">
+        <t t-call="web.html_container">
+            <style>
+                .page {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                }
+                h2 {
+                text-align: center;
+                color: #6A1E55;
+                }
+                table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                }
+                table th, table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                }
+                table th {
+                background-color: #f4f4f4;
+                color: #333;
+                }
+            </style>
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <!-- Header -->
+                    <h2>Student Details Report</h2>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>REF</th>
+                            <td>
+                                <t t-esc="doc.ref"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Student Name</th>
+                            <td>
+                                <t t-esc="doc.name"/>
+                            </td>
+                            <th>Age</th>
+                            <td>
+                                <t t-esc="doc.age"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Teacher</th>
+                            <td>
+                                <t t-esc="doc.techers"/>
+                            </td>
+                            <th>Grade</th>
+                            <td>
+                                <t t-esc="doc.grad"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Birthday</th>
+                            <td>
+                                <t t-esc="doc.birth_day"/>
+                            </td>
+                            <th>Created by</th>
+                            <td>
+                                <t t-esc="doc.create_uid.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Product Table -->
+                    <h3>Products</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Internal Reference</th>
+                                <th>Sales Price</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.product_id" t-as="product">
+                                <tr>
+                                    <td>
+                                        <t t-esc="product.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="product.default_code"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="product.list_price"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="product.standard_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

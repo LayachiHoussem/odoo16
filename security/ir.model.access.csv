@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_student,student.student,model_student_student,base.group_user,1,1,1,1
+access_techer_techer,techer.techer,model_techer_techer,base.group_user,1,1,1,1
+access_level_level,level.level,model_level_level,base.group_user,1,1,1,1
+access_material_material,material_material,model_material_material,base.group_user,1,1,1,1
+
+

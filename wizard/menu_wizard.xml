@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_download_csv_report" model="ir.actions.act_url">
+        <field name="name">Student CSV Report</field>
+        <field name="url">/custom_csv_report</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+
+

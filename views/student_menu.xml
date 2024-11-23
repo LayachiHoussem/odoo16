@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_form_student" model="ir.ui.view">
+        <field name="name">student.student.form</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <header>
+                    <!-- Button visibility based on state -->
+                    <button type="object" name="action_draft" string="Draft" states="confirmed,cancel"/>
+                    <button type="object" name="action_confirm" string="Confirm" class="oe_highlight" states="draft"/>
+                    <button type="object" name="action_cancel" string="Cancel" states="confirmed"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel" nolabel="1"
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_products" type="object" string="Products" class="oe_stat_button"
+                                icon="fa-globe icon">
+                            <field name="product_id" widget="statinfo"/>
+                        </button>
+
+                    </div>
+                    <group>
+                        <group>
+                            <field name="ref"/>
+                            <field name="name"/>
+                            <field name="birth_day"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="techers" domain="[('grad','=',grad)]"/>
+                            <field name="grad"/>
+                            <field name="create_uid"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page String="Line of Product">
+                            <field name="product_id"/>
+                            <tree>
+
+                            </tree>
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_tree_student" model="ir.ui.view">
+        <field name="name">student.student.tree</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="birth_day"/>
+                <field name="grad"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_kanban_student" model="ir.ui.view">
+        <field name="name">student.student.kanban</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div>
+                                <strong>
+                                    <field name="ref"/>
+                                </strong>
+                            </div>
+                            <div>
+                                <span><field name="name"/>&amp;nbsp;
+                                </span>
+                            </div>
+                            <div t-if="!selection_mode">
+                                <span>Vacancies :
+                                    <field name="age"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action to display the views -->
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+</odoo>
